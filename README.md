@@ -6,7 +6,7 @@ A modern and scalable train ticket reservation system designed to provide a seam
 
 ## Overview
 
-Railway Ticket Reservation Pro System is a full-stack web application that allows users to search, book, and manage train tickets بسهولة، مع وجود لوحة تحكم للإدارة لإدارة النظام بالكامل.
+Railway Ticket Reservation Pro System is a full-stack web application that allows users to search, book, and manage train tickets.
 
 Created on: 15 May 2025
 
