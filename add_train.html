@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Add Train</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f0ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #9c7bbf;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7a6b8f;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0d6eb;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #9c7bbf;
+            outline: none;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn-submit {
+            background-color: #9c7bbf;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #8a69ad;
+            transform: translateY(-2px);
+        }
+        .btn-cancel {
+            background-color: white;
+            color: #9c7bbf;
+            padding: 12px 30px;
+            border: 1px solid #9c7bbf;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+        }
+        .btn-cancel:hover {
+            background-color: #f8f0ff;
+        }
+        .train-icon {
+            text-align: center;
+            font-size: 2em;
+            color: #9c7bbf;
+            margin: 20px 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Train</h1>
+        <div class="train-icon">🚆</div>
+        
+        <form method="POST" action="/admin/add_train">
+            <div class="form-group">
+                <label>From:</label>
+                <input type="text" name="source" required placeholder="Departure city">
+            </div>
+            <div class="form-group">
+                <label>To:</label>
+                <input type="text" name="destination" required placeholder="Arrival city">
+            </div>
+            <div class="form-group">
+                <label>Departure Time:</label>
+                <input type="datetime-local" name="departure_time" required>
+            </div>
+            <div class="form-group">
+                <label>Seats Available:</label>
+                <input type="number" name="seats" required min="1" placeholder="Total seats">
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn-submit">Add Train</button>
+                <a href="/admin/trains" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

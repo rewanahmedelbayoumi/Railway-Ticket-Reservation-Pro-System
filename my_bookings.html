@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - My Bookings</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f0ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #d48a8e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0e6fa;
+        }
+        th {
+            background-color: #f8f0ff;
+            color: #7a6b8f;
+        }
+        tr:hover {
+            background-color: #fdf5ff;
+        }
+        .status-active {
+            color: #8ed48a;
+            font-weight: 600;
+        }
+        .status-cancelled {
+            color: #d48a8e;
+        }
+        .cancel-btn {
+            color: #d48a8e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7a6b8f;
+            text-decoration: none;
+        }
+        .no-bookings {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>My Bookings</h1>
+        
+        {% if bookings %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure Time</th>
+                    <th>Booking Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking[0] }}</td>
+                    <td>{{ booking[1] }}</td>
+                    <td>{{ booking[2] }}</td>
+                    <td>{{ booking[3] }}</td>
+                    <td>{{ booking[4] }}</td>
+                    <td>
+                        {% if booking[5] == 'active' %}
+                            <span class="status-active">Active</span>
+                        {% else %}
+                            <span class="status-cancelled">Cancelled</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if booking[5] == 'active' %}
+                            <a href="/cancel/{{ booking[0] }}" class="cancel-btn">Cancel</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-bookings">
+            <p>You don't have any bookings yet.</p>
+            <p><a href="/trains">Find trains to book</a></p>
+        </div>
+        {% endif %}
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

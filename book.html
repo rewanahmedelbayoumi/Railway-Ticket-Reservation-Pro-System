@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Confirm Booking</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf5ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #d48a8e;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        .train-details {
+            margin-bottom: 30px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #f0e6fa;
+        }
+        .detail-label {
+            color: #7a6b8f;
+            font-weight: 600;
+        }
+        .detail-value {
+            color: #5a4a6a;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn-confirm {
+            background-color: #d48a8e;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+        }
+        .btn-confirm:hover {
+            background-color: #c17579;
+            transform: translateY(-2px);
+        }
+        .btn-cancel {
+            background-color: white;
+            color: #d48a8e;
+            padding: 12px 30px;
+            border: 1px solid #d48a8e;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s;
+        }
+        .btn-cancel:hover {
+            background-color: #fdf5ff;
+        }
+        .train-icon {
+            text-align: center;
+            font-size: 2em;
+            color: #d48a8e;
+            margin: 20px 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Your Booking</h1>
+        <div class="train-icon">🚂</div>
+        
+        <div class="train-details">
+            <div class="detail-row">
+                <span class="detail-label">Train ID:</span>
+                <span class="detail-value">{{ train[0] }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">From:</span>
+                <span class="detail-value">{{ train[1] }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">To:</span>
+                <span class="detail-value">{{ train[2] }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Departure:</span>
+                <span class="detail-value">{{ train[3] }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Seats Available:</span>
+                <span class="detail-value">{{ train[4] }}</span>
+            </div>
+        </div>
+        
+        <form method="POST" action="/book/{{ train[0] }}">
+            <div class="btn-container">
+                <button type="submit" class="btn-confirm">Confirm Booking</button>
+                <a href="/trains" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Find Your Journey</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff5f7;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #d48a8e;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #7a6b8f;
+        }
+        .btn {
+            background-color: #d48a8e;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background-color: #c17579;
+            transform: translateY(-2px);
+        }
+        .nav-links {
+            margin: 20px 0;
+        }
+        .nav-links a {
+            color: #7a6b8f;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+        .flashes {
+            background-color: #f8e1e2;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>RailElegance</h1>
+        <div class="tagline">Find Your Perfect Journey</div>
+        <a href="/trains" class="btn">BOOK TICKET</a>
+    </div>
+
+    <div class="nav-links">
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flashes">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Manage Trains</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f0ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #9c7bbf;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        .add-train-btn {
+            background-color: #9c7bbf;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .add-train-btn:hover {
+            background-color: #8a69ad;
+            transform: translateY(-2px);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0e6fa;
+        }
+        th {
+            background-color: #f8f0ff;
+            color: #7a6b8f;
+        }
+        tr:hover {
+            background-color: #fdf5ff;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7a6b8f;
+            text-decoration: none;
+        }
+        .no-trains {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .edit-btn, .delete-btn {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .edit-btn {
+            background-color: #d48a8e;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f0e6fa;
+            color: #7a6b8f;
+        }
+        .edit-btn:hover {
+            background-color: #c17579;
+        }
+        .delete-btn:hover {
+            background-color: #e0d6eb;
+        }
+        .flash-messages {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .flash-message {
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .flash-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .flash-error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Trains</h1>
+        
+        <!-- Flash messages display -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <a href="/admin/add_train" class="add-train-btn">+ Add New Train</a>
+        
+        {% if trains %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Train ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure Time</th>
+                    <th>Seats Available</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for train in trains %}
+                <tr>
+                    <td>{{ train[0] }}</td>
+                    <td>{{ train[1] }}</td>
+                    <td>{{ train[2] }}</td>
+                    <td>{{ train[3] }}</td>
+                    <td>{{ train[4] }}</td>
+                    <td class="admin-actions">
+                        <a href="/admin/edit_train/{{ train[0] }}" class="edit-btn">Edit</a>
+                        <form action="/admin/delete_train/{{ train[0] }}" method="POST" style="display: inline;">
+                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this train?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-trains">
+            <p>No trains available in the system.</p>
+            <p><a href="/admin/add_train" class="add-train-btn">Add your first train</a></p>
+        </div>
+        {% endif %}
+        
+        <a href="/admin" class="back-link">← Back to Admin Panel</a>
+    </div>
+
+    <script>
+        // Confirm before deleting
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (!confirm('Are you sure you want to delete this train?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

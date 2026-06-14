@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Register</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f4ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #d48a8e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7a6b8f;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0d6eb;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #d48a8e;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #c17579;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #7a6b8f;
+        }
+        .login-link a {
+            color: #d48a8e;
+            text-decoration: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Account</h1>
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
+    </div>
+</body>
+</html>

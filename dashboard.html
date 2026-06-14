@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Dashboard</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf5ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(rgba(212, 138, 142, 0.1), rgba(212, 138, 142, 0.1)), 
+                        url('https://images.unsplash.com/photo-1488085061387-422e29b40080?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .welcome-message {
+            color: white;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        .action-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .card-icon {
+            font-size: 2.5em;
+            color: #d48a8e;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #7a6b8f;
+        }
+        .card-btn {
+            background-color: #d48a8e;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .card-btn:hover {
+            background-color: #c17579;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .nav-link {
+            color: #7a6b8f;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #d48a8e;
+        }
+        .admin-badge {
+            background-color: #f0e6fa;
+            color: #9c7bbf;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>RailElegance</h1>
+        <div class="welcome-message">Welcome back, {{ name }}!</div>
+    </div>
+
+    <div class="action-cards">
+        <div class="card">
+            <div class="card-icon">🚆</div>
+            <div class="card-title">Find Your Next Journey</div>
+            <a href="/trains" class="card-btn">Search Trains</a>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">🎫</div>
+            <div class="card-title">Manage Your Bookings</div>
+            <a href="/my_bookings" class="card-btn">View Tickets</a>
+        </div>
+        
+        {% if session.role == 'admin' %}
+        <div class="card">
+            <div class="card-icon">👑</div>
+            <div class="card-title">Admin Dashboard</div>
+            <a href="/admin" class="card-btn">Manage System</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="navigation">
+        <a href="/trains" class="nav-link">Search Trains</a>
+        <a href="/my_bookings" class="nav-link">My Bookings</a>
+        {% if session.role == 'admin' %}
+            <a href="/admin" class="nav-link">Admin Panel <span class="admin-badge">ADMIN</span></a>
+        {% endif %}
+        <a href="/logout" class="nav-link">Logout</a>
+    </div>
+</body>
+</html>

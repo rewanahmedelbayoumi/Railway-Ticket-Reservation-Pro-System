@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RailElegance - Admin Panel</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f0ff;
+            color: #5a4a6a;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #9c7bbf;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        .admin-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+        .admin-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .admin-icon {
+            font-size: 2.5em;
+            color: #9c7bbf;
+            margin-bottom: 15px;
+        }
+        .admin-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #7a6b8f;
+        }
+        .admin-btn {
+            background-color: #9c7bbf;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .admin-btn:hover {
+            background-color: #8a69ad;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .nav-link {
+            color: #7a6b8f;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #d48a8e;
+        }
+        .admin-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .admin-badge {
+            background-color: #f0e6fa;
+            color: #9c7bbf;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        .flash-message {
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .flash-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .flash-error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="admin-header">
+            <h1>Admin Panel</h1>
+            <p class="admin-badge">System Management</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="admin-cards">
+            <div class="admin-card">
+                <div class="admin-icon">🚆</div>
+                <div class="admin-title">Manage Trains</div>
+                <a href="/admin/trains" class="admin-btn">View Trains</a>
+            </div>
+            
+            <div class="admin-card">
+                <div class="admin-icon">➕</div>
+                <div class="admin-title">Add New Train</div>
+                <a href="/admin/add_train" class="admin-btn">Create Train</a>
+            </div>
+            
+            <div class="admin-card">
+                <div class="admin-icon">📊</div>
+                <div class="admin-title">Reports & Analytics</div>
+                <a href="/admin/reports" class="admin-btn">View Reports</a>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-icon">👥</div>
+                <div class="admin-title">User Management</div>
+                <a href="#" class="admin-btn">Coming Soon</a>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="/dashboard" class="nav-link">User Dashboard</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
